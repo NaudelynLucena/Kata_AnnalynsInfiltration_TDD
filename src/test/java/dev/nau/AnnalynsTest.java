@@ -13,4 +13,12 @@ public class AnnalynsTest {
         boolean knightIsAwake = false;
         assertThat(Annalyns.canFastAttack(knightIsAwake), is(true));
     }
+
+    @Test
+    @Tag("task:1")
+    @DisplayName("The canFastAttack method returns false when knight is awake")
+    public void cannot_execute_fast_attack_if_knight_is_awake() {
+        boolean knightIsAwake = true;
+        assertThat(Annalyns.canFastAttack(knightIsAwake), is(false));
+    }
 }
