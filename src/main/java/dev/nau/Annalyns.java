@@ -13,4 +13,16 @@ public class Annalyns {
     public static boolean canSignalPrisoner(boolean archerIsAwake, boolean prisonerIsAwake) {
         return (prisonerIsAwake && !archerIsAwake);
     }
+
+    public static boolean canFreePrisoner(boolean knightIsAwake, boolean archerIsAwake, boolean prisonerIsAwake, boolean petDogIsPresent) {
+        if (petDogIsPresent && !archerIsAwake){
+            return true;
+        }
+
+        if (!petDogIsPresent && prisonerIsAwake && !knightIsAwake && !archerIsAwake){
+            return true;
+        }
+
+        return false;
+    }
 }
