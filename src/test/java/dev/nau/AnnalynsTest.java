@@ -57,4 +57,30 @@ public class AnnalynsTest {
         assertThat(Annalyns.canSignalPrisoner(archerIsAwake, prisonerIsAwake), is(expectedResult));
     }
 
+    @ParameterizedTest
+    @CsvSource({
+        "true, false, true, true, true",
+        "false, false, false, true, true",
+        "false, false, true, true, true",
+        "true, false, false, true, true",
+        "false, true, false, true, false",
+        "true, false, true, true, true",
+        "true, true, true, true, false",
+
+        "false, false, true, false, true",
+        "false, false, false, false, false",
+        "true, false, true, false, false",
+        "false, true, true, false, false",
+        "true, false, false, false, false",
+        "false, true, false, false, false",
+        "true, true, true, false, false"
+    })
+    @Tag("task:4")
+    @DisplayName("The canFreePrisoner method returns correct values based on the given conditions")
+    public void testCanFreePrisoner(boolean knightIsAwake, boolean archerIsAwake, boolean prisonerIsAwake, boolean petDogIsPresent, boolean expectedResult) {
+
+        boolean result = Annalyns.canFreePrisoner(knightIsAwake, archerIsAwake, prisonerIsAwake, petDogIsPresent);
+
+        assertThat(result, is(expectedResult));
+    }
 }
