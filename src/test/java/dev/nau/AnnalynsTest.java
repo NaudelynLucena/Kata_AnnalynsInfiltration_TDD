@@ -2,6 +2,8 @@ package dev.nau;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -38,7 +40,21 @@ public class AnnalynsTest {
     })
     public void testCanSpy(boolean knightIsAwake, boolean archerIsAwake, boolean prisonerIsAwake,
             boolean expectedResult) {
-        // Aquí el método puede ser llamado con los parámetros
         assertThat(Annalyns.canSpy(knightIsAwake, archerIsAwake, prisonerIsAwake), is(expectedResult));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        "true, false, true",
+        "false, false, false",
+        "true, true, false",
+        "false, true, false",
+        "true, false, true"
+    })
+    @Tag("task:3")
+    @DisplayName("The canSignalPrisoner method returns correct values based on archer and prisoner states")
+    public void testCanSignalPrisoner(boolean prisonerIsAwake, boolean archerIsAwake, boolean expectedResult) {
+        assertThat(Annalyns.canSignalPrisoner(archerIsAwake, prisonerIsAwake), is(expectedResult));
+    }
+
 }
